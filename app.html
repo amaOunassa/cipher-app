@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chiffrement César & Affine</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    h2 { text-align: center; color: #333; }
+    label { font-weight: 600; display: block; margin-top: 10px; }
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    button {
+      background: #4a90e2;
+      color: white;
+      font-weight: bold;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background: #357ABD; }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eef3fb;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Chiffrement César & Affine</h2>
+
+    <label>Message :</label>
+    <input type="text" id="message" placeholder="Entrez votre texte..." />
+
+    <label>Type de chiffrement :</label>
+    <select id="type">
+      <option value="caesar">César</option>
+      <option value="affine">Affine</option>
+    </select>
+
+    <label>Mode :</label>
+    <select id="mode">
+      <option value="chiffrement">Chiffrement</option>
+      <option value="Dechiffrement">Déchiffrement</option>
+    </select>
+
+    <div id="cesarKeys">
+      <label>Clé (décalage pour César) :</label>
+      <input type="number" id="cleCesar"/>
+    </div>
+
+    <div id="affineKeys" style="display:none;">
+      <label>a :</label>
+      <input type="number" id="cleA"/>
+      <label>b :</label>
+      <input type="number" id="cleB" />
+    </div>
+
+    <button onclick="runCipher()">Exécuter</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+<script src="./app.js"></script>
+</body>
+</html>
