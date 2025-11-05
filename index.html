@@ -2,89 +2,213 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Chiffrement César & Affine</title>
+  <title>Chiffrement César & Affine + IA</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
   <style>
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f4f4f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      background: white;
-      padding: 20px 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 400px;
-    }
-    h2 { text-align: center; color: #333; }
-    label { font-weight: 600; display: block; margin-top: 10px; }
-    input, select, button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-    button {
-      background: #4a90e2;
-      color: white;
-      font-weight: bold;
-      margin-top: 15px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover { background: #357ABD; }
-    .result {
-      margin-top: 15px;
-      padding: 10px;
-      background: #eef3fb;
-      border-radius: 8px;
-      font-weight: 600;
-      color: #333;
-    }
-  </style>
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #0a0f2c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    background: #0d1a4f;
+    color: #e4e9f7;
+    padding: 30px 25px;
+    border-radius: 24px;
+    width: 420px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  h2 {
+    text-align: left;
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h2 i {
+    color: #4cb9ff;
+    font-size: 22px;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #a9b7d0;
+    margin-top: 14px;
+  }
+
+  input, select {
+    width: 100%;
+    background: #142566;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    color: #e4e9f7;
+    margin-top: 5px;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    background: #1a2f77;
+    border: 1px solid #4cb9ff;
+  }
+
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 4%;
+  }
+
+  /* 🔹 Primary Button (Exécuter) */
+  .btn-primary {
+    width: 48%;
+    background: linear-gradient(135deg, #8759ff, #5e3fff);
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #a174ff, #7458ff);
+    transform: scale(1.02);
+  }
+
+  /* 🔸 Secondary Button (IA Analyse) */
+  .btn-secondary {
+    width: 48%;
+    background: linear-gradient(135deg, #8759ff, #5e3fff);
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, #a174ff, #7458ff);
+    transform: scale(1.02);
+  }
+
+  .result {
+    margin-top: 20px;
+    padding: 14px;
+    background: #0a0f2c;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #d9e3ff;
+    min-height: 50px;
+    white-space: pre-wrap;
+    font-size: 14px;
+  }
+
+  ::placeholder {
+    color: #7f8cb0;
+  }
+</style>
+
 </head>
 <body>
   <div class="container">
-    <h2>Chiffrement César & Affine</h2>
+    <h2><i class="ri-lock-2-line"></i>Chiffrement César & Affine</h2>
 
-    <label>Message :</label>
+    <label><i class="ri-chat-1-line"></i> Message :</label>
     <input type="text" id="message" placeholder="Entrez votre texte..." />
 
-    <label>Type de chiffrement :</label>
+    <label><i class="ri-key-line"></i> Type de chiffrement :</label>
     <select id="type">
       <option value="caesar">César</option>
       <option value="affine">Affine</option>
     </select>
 
-    <label>Mode :</label>
+    <label><i class="ri-loop-right-line"></i> Mode :</label>
     <select id="mode">
       <option value="chiffrement">Chiffrement</option>
       <option value="Dechiffrement">Déchiffrement</option>
     </select>
 
     <div id="cesarKeys">
-      <label>Clé (décalage pour César) :</label>
-      <input type="number" id="cleCesar"/>
+      <label><i class="ri-number-1"></i> Clé (décalage pour César) :</label>
+      <input type="number" id="cleCesar" />
     </div>
 
     <div id="affineKeys" style="display:none;">
-      <label>a :</label>
+      <label><i class="ri-function-line"></i> a :</label>
       <input type="number" id="cleA"/>
-      <label>b :</label>
+      <label><i class="ri-add-line"></i> b :</label>
       <input type="number" id="cleB" />
     </div>
 
-    <button onclick="runCipher()">Exécuter</button>
+ <div class="button-row">
+  <button class="btn-primary" onclick="runCipher()">
+    <i class="ri-play-line"></i> Exécuter
+  </button>
+  <button class="btn-secondary" onclick="analyseIA()">
+    <i class="ri-brain-line"></i> Analyse IA
+  </button>
+</div>
+
+
 
     <div class="result" id="result"></div>
   </div>
 
-<script src="./app.js"></script>
+  <!-- ton script d'origine -->
+  <script src="./app.js"></script>
+
+  <!-- ton script IA -->
+  <script src="./analyseIA.js"></script>
+
+  <script>
+    document.getElementById("type").addEventListener("change", function() {
+      if (this.value === "caesar") {
+        document.getElementById("cesarKeys").style.display = "block";
+        document.getElementById("affineKeys").style.display = "none";
+      } else {
+        document.getElementById("cesarKeys").style.display = "none";
+        document.getElementById("affineKeys").style.display = "block";
+      }
+    });
+    async function analyseIA() {
+  const type = document.getElementById("type").value;
+  
+  if (type === "caesar") {
+    await autoAnalyseAI(); // existing function
+  } else if (type === "affine") {
+    await autoAnalyseAffineAI(); // existing function
+  } else {
+    document.getElementById("result").textContent = "⚠️ Type de chiffrement inconnu.";
+  }
+}
+
+  </script>
 </body>
 </html>
